@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
+
     def index
-        @posts = Post.all.order(created_at: :desc )
+        @posts = Post.all.order(created_at: :desc)
     end 
 
     def show
         @post = Post.find(params[:id])
+        @comment = Comment.new
+        @comments = @post.comments.order(created_at: :desc)
     end 
 
     def new
@@ -12,7 +15,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.new(params.require(:post).permit(:title, :body, :image )) 
+        @post = Post.new(params.require(:post).permit(:title, :body, :image)) 
         if @post.save  
             redirect_to posts_path  
         else 
@@ -38,4 +41,5 @@ class PostsController < ApplicationController
             render :edit
 	    end
     end
+
 end

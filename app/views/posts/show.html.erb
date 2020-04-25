@@ -8,6 +8,8 @@
         </span>   
     </h1>
     <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @post.body%></p>
+     Posted <%= time_ago_in_words(@post.created_at)%> ago.
+    <br>
     <div> 
         <%= link_to(
         "Edit",
@@ -24,4 +26,39 @@
         )
         %>
     </div>
+
+<br>
+
+    <div class="shadow-none p-3 mb-5 bg-light rounded">
+        <%= simple_form_for [@post, @comment] do |f| %>
+       <h5> <%= f.input :body, label: "Comment", class: "format-group" %> </h5>
+        <%= f.submit "Comment", class: "btn btn-outline-info btn-lg-sm btn-block"%>
+        <% end %>
+    </div>
+<br>
+   
+       <ul class="list-group answer-list ">
+    <% @comments.each do |comment| %>
+        <li class="list-group-item">
+             <div >
+            <%= comment.body %>  <br>
+            <small>
+            commented <%= time_ago_in_words(comment.created_at) %>
+            </small>
+            <small class="d-flex flex-row-reverse">
+            <%= link_to(
+                "Delete",
+                post_comment_path(@post, comment),
+                method: :delete, 
+                data: {
+                confirm: "Are you sure?"
+                },
+                class: 'btn btn-danger btn-sm',
+            ) %>
+            </small> 
+        </div>
+        </li>
+    <% end %>
+    </ul>
+
 </div> 
