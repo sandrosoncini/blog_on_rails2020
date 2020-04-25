@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Post.delete_all
+
+100.times do
+    Post.create(
+        title: Faker::Book.title,
+        body: Faker::ChuckNorris.fact
+    )
+end
+
+post = Post.all
+
+puts Cowsay.say("Generated #{post.count} posts", :cow)
