@@ -1,18 +1,18 @@
-<h1>Index</h1>
+
 
 <div class="row" >
-    <% @posts.each do |post| %>
-        <div class=" col-sm-4">
-            <div class="card mb-4 ">        
-              <div class="card w-100">
-                <div class="card-body">
-                    <a href="/posts/<%=post.id%>">
-                    <h5 class="card-title"><%=post.title%></h5>
-                    </a>
-                    <p class="card-text"><%=post.body%></p>
+        <% @posts.each do |post| %>
+            <div class=" col-sm-4">
+                <div class="card-deck mb-3 ">        
+                <div class="card w-100">
+                    <div class="card-body">
+                        <a href="/posts/<%=post.id%>">
+                        <h5 class="card-title "><%=post.title%></h5>
+                        </a>
+                        <p class="card-text text-nowrap text-truncate"><%=post.body%></p>
+                    </div>
                 </div>
-              </div>
-            </div>       
-        </div>
-    <% end %>
+                </div>       
+            </div>
+        <% end %>
 </div>
