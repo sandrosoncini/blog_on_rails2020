@@ -7,6 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Post.delete_all
 Comment.delete_all
+User.delete_all
+
+user = User.all
+
+PASSWORD = 'supersecret'
+super_user = User.create(
+    name: 'jon',
+    email: 'js@winterfell.gov',
+    password: PASSWORD
+)
+10.times do 
+    created_at = Faker::Date.backward(days: 365 * 5)
+    User.create(
+        name: Faker::Name.name,
+        email: Faker::Internet.email,
+        password: PASSWORD  
+    )
+end
 
 100.times do
     p = Post.create(
@@ -29,3 +47,4 @@ comment = Comment.all
 
 puts Cowsay.say("Generated #{post.count} posts", :cow)
 puts Cowsay.say("Generated #{comment.count} comments", :frogs)
+puts Cowsay.say("Generated #{user.count} users", :dragon)
