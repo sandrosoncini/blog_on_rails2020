@@ -5,11 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Post.delete_all
+
 Comment.delete_all
+Post.delete_all
 User.delete_all
 
-user = User.all
+users = User.all
 
 PASSWORD = 'supersecret'
 super_user = User.create(
@@ -17,25 +18,29 @@ super_user = User.create(
     email: 'js@winterfell.gov',
     password: PASSWORD
 )
-10.times do 
+20.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
     User.create(
         name: Faker::Name.name,
         email: Faker::Internet.email,
-        password: PASSWORD  
+        password: PASSWORD
+          
     )
 end
 
 100.times do
     p = Post.create(
         title: Faker::Book.title,
-        body: Faker::ChuckNorris.fact
+        body: Faker::ChuckNorris.fact,
+        user: users.sample
     )
 
     if p.valid? 
         p.comments = rand(0..15).times.map do 
             Comment.new(
-                body: Faker::GreekPhilosophers.quote
+                body: Faker::GreekPhilosophers.quote,
+                user: users.sample
+                
             
             )
         end
@@ -47,4 +52,4 @@ comment = Comment.all
 
 puts Cowsay.say("Generated #{post.count} posts", :cow)
 puts Cowsay.say("Generated #{comment.count} comments", :frogs)
-puts Cowsay.say("Generated #{user.count} users", :dragon)
+puts Cowsay.say("Generated #{users.count} users", :dragon)
