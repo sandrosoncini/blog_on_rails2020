@@ -12,6 +12,15 @@
     <div class="my-2 my-md-0">
       <a class="p-2 text-primary" href="/">Home</a>
       <a class="p-2 text-primary" href="/posts/new">New Posts</a>
+      <div class="my-2 my-md-0">
+        <% if user_signed_in? %>
+            <%= link_to "Logout", session_path, method: :delete, class:'btn btn-danger' %>
+            <a href="/users/<%=current_user.id%>/edit"><%= current_user.name %> </a>
+            
+          <% else  %>
+            <%= link_to "Log In", new_session_path, class: 'btn btn-success '%>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>

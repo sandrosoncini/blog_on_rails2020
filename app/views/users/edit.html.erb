@@ -1,0 +1,16 @@
+<h1>Edit User</h1><div class='container'>
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class='shadow-none p-3 mb-5 bg-light rounded'>
+    <div class="form-group " >
+      <%= form.label :name %> <br>
+      <%= form.text_field(:name, class: "form-control" ) %>
+    </div>
+    <div class="form-group" >
+      <%= form.label :email %> <br>
+      <%= form.text_field :email, class: "form-control"  %>
+    </div>
+    <%= form.submit "Submit", class: "btn btn-info" %>
+  </div>
+<% end %>
+<a type="button" class="btn btn-primary" href="/users/<%=@user.id%>/change_password">Change Password</a>
+</div>

@@ -43,6 +43,7 @@ group :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'simple_form'
+  gem 'cancancan'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
