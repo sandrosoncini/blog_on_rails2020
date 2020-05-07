@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize!, only: [:edit, :update, :change_password]
+  
   def new
       @user = User.new
   end
@@ -33,5 +35,13 @@ class UsersController < ApplicationController
   def change_password
     @user = User.find(params[:id])
   end
+
+  private
+
+    def authorize! 
+        @user= User.find(params[:id])
+        
+        redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @user)
+    end
 
 end

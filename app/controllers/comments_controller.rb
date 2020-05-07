@@ -13,7 +13,15 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find params[:id]
-        @comment.destroy 
-        redirect_to post_path(@comment.post)
+        if can?(:crud, @comment)
+            @comment.destroy 
+            redirect_to post_path(@comment.post)
+        else
+            #head :unauthorized
+            flash[:warning] = "You do not have permition to make this action"    
+            redirect_to post_path(@comment.post)
+        end
     end
+
+    
 end

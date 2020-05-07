@@ -6,7 +6,6 @@
     </p>
     <% end %>
     <%= form_with(model: @post, local: true) do |form| %>
-    <% byebug %>
         <div class="form-group " >
         <%= form.label :title %> <br>
         <%= form.text_field(:title, class: "form-control" ) %>

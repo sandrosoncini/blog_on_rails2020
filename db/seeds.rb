@@ -16,14 +16,18 @@ PASSWORD = 'supersecret'
 super_user = User.create(
     name: 'jon',
     email: 'js@winterfell.gov',
-    password: PASSWORD
+    password: PASSWORD,
+    
+
 )
 20.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
     User.create(
         name: Faker::Name.name,
         email: Faker::Internet.email,
-        password: PASSWORD
+        password: PASSWORD,
+       
+        
           
     )
 end

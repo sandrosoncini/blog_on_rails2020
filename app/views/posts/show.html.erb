@@ -34,6 +34,8 @@
     <div class="container-float ">
         <% @comments.each do |comment| %>
             <div >
+              
+               <%=comment.user.name%> <br>
                 <%= comment.body %>  <br>
                 <div class=" d-flex  align-items-center w-100">
                     <small >
