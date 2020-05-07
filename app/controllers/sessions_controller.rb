@@ -7,10 +7,9 @@ class SessionsController < ApplicationController
         user = User.find_by_email params[:email]
         if user&.authenticate params[:password]
           session[:user_id] = user.id
-          flash[:success] = "User Logged In"
           redirect_to root_path
         else
-          flash[:warning] = "Couldn't log In"
+          flash[:danger] = "The username and password combination is not recognized. Please try again."
           render :new
         end
     end

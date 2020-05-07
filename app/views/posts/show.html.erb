@@ -34,9 +34,8 @@
     <div class="container-float ">
         <% @comments.each do |comment| %>
             <div >
-              
-               <%=comment.user.name%> <br>
-                <%= comment.body %>  <br>
+               <div class="font-weight-bold"><%=comment.user.name%> </div>
+             <%= comment.body %> <br>
                 <div class=" d-flex  align-items-center w-100">
                     <small >
                     Commented <%= time_ago_in_words(comment.created_at) %> ago •
@@ -49,10 +48,12 @@
                         data: {
                         confirm: "Are you sure?"
                         },
-                        class: 'btn btn-link text-primary "',
+                        class: 'btn btn-link text-primary ',
                     ) %>
                     </small> 
+                    
                 </div>
+                <br>
             </div>    
         <% end %>
     </ul>

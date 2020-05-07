@@ -12,6 +12,7 @@
   <body>
   <%= render 'shared/navbar' %>
   <div class="container-fluid">
+  <% if false %>
     <% flash.each do |type, message| %>
           <% if type == 'warning' %>
           <div class='container bg-<%= type %> p-3 rounded mb-2 shadow-sm'><%= message %></div>
@@ -20,6 +21,7 @@
             <%= message %>
           </div>
           <% end %>
+    <% end %>
     <% end %>
     <%= yield %>
   </div>  
