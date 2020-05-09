@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'posts#index'
+
+  get("/users/:id/change_password", to: "users#change_password")
+  patch("/users/:id", to: "users#update", as: :new_password)
+  resources :users, only: [:new, :create, :edit, :update]
+
+  resource :session, only: [:new,:create, :destroy]
+
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
+
+
 end

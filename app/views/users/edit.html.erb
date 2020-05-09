@@ -1,0 +1,24 @@
+<div class='container'>
+<h1 class="p-3 mb-2 " >Edit Profile</h1>
+  <% if @user.errors.present? %>
+    <p class="text-danger">
+        <%= @user.errors.full_messages.join(', ')%>
+    </p>
+    <% end %>
+  
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class='shadow-none p-3 mb-5 bg-light rounded'>
+    <div class="form-group " >
+      <%= form.label :name %> <br>
+      <%= form.text_field(:name, class: "form-control" ) %>
+    </div>
+    <div class="form-group" >
+      <%= form.label :email %> <br>
+      <%= form.text_field :email, class: "form-control"  %>
+    </div>
+    <%= form.submit "Submit", class: "btn btn-info" %>
+    <a type="button" class="btn btn-primary" href="/users/<%=@user.id%>/change_password">Change Password</a>
+  </div>
+<% end %>
+
+</div>
