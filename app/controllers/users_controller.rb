@@ -17,20 +17,26 @@ class UsersController < ApplicationController
   end
 
   def edit
-     @user = User.find(params[:id])
-  end
+     @user = User.find(params[:id])# @user User.find session[:user_id]
+     # # the current_user method already fetches the logged in user for us
+    end
 
   def update
-    @user = User.find(params[:id])
-    if  params[:user][:current_password]!= params[:user][:password] && params[:user][:password] == params[:user][:password_confirmation] 
-          @user.update(params.require(:user).permit(:password, :password_confirmation))
+  
+      @user = User.find params[:id]
+      if (current_user.authenticate(params[:user][:current_password]))
+          if params[:user][:current_password]!= params[:user][:password] && params[:user][:password] == params[:user][:password_confirmation] 
+                @user.update(params.require(:user).permit(:password, :password_confirmation))
+                redirect_to root_path
+          end
+      elsif @user.update(params.require(:user).permit(:name, :email))
           redirect_to root_path
-    elsif @user.update(params.require(:user).permit(:name, :email))
-          redirect_to root_path
-    else
-       flash[:warning] = "Unable to change password"        
-       render :change_password
-    end
+      else
+          flash[:warning] = "Unable to change password" 
+          render :change_password  
+      end
+     
+      
   end
 
   def change_password
@@ -41,8 +47,9 @@ class UsersController < ApplicationController
 
     def authorize! 
         @user= User.find(params[:id])
-        
         redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @user)
     end
 
 end
+
+

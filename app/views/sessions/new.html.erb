@@ -2,13 +2,7 @@
 
 <div class='container shadow-sm p-3 mb-5 bg-white rounded'>
   <%# <h1>Sign In</h1> <br> %>
-    <% flash.each do |type, message| %>
-          
-          <div class='bg-<%= type %> p-3 rounded mb-2 shadow-sm text-white'>
-            <%= message %>
-          </div>
-          
-    <% end %>
+
   <%= form_with url: session_path, local:true do |f| %>
     <div class='form-group'>
       <%= f.label :email %>

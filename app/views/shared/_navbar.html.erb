@@ -6,23 +6,17 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExample02">
-    <ul class="navbar-nav mr-auto">
-   
-    </ul>
+    <ul class="navbar-nav mr-auto"></ul>
     <div class="my-2 my-md-0">
       <a class="p-2 text-primary" href="/">Home</a>
       <a class="p-2 text-primary" href="/posts/new">New Posts</a>
-      <a class="p-2 btn btn-outline-success" href="/users/new">Sign Up</a>
-     
         <% if user_signed_in? %>
-        
             <%= link_to "Logout", session_path, method: :delete, class:'btn btn-danger btn-sm' %>
             <a class="p-2 text-primary font-weight-bold " href="/users/<%=current_user.id%>/edit"><%= current_user.name %> </a>
-            
           <% else  %>
-            <%= link_to "Log In", new_session_path, class: 'btn btn-success '%>
+            <%= link_to "Log In", new_session_path, class: 'btn btn-outline-primary '%>
+            <a class="p-2 btn btn-primary" href="/users/new">Sign Up</a>
         <% end %>
-   
     </div>
   </div>
 </nav>
